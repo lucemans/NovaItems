@@ -36,6 +36,10 @@ public class NItem {
 
     public NItem(Material type, int amount) { this.type = type; this.amount = amount; }
 
+    public NItem(NItem item) {
+        this(item.make());
+    }
+
     // Item Properties
     public NItem setName(String name) { this.name = name; return this; }
     public NItem setAmount(int amount) { this.amount = amount; return this; }
@@ -107,7 +111,6 @@ public class NItem {
         List<String> res = new ArrayList<String>();
         for (String _str : str)
             res.add(parse(_str));
-
         return res;
     }
 }
