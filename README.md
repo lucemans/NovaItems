@@ -40,7 +40,7 @@ If you are a developing using NovaItems, post your code somehwere and I would ha
 NItem.create(Material.GOLD_AXE).make();
 ```
 The above code simply creates a new Instance of NItem of type GOLD_AXE.
-The make() function simply fabricates the ItemStack.
+The ```make()``` function simply fabricates the ```ItemStack```.
 
 #### Creating an item from another item
 
@@ -50,10 +50,11 @@ ItemStack itemstack = new ItemStack(Material.STONE);
 NItem.create(itemstack).make();
 ```
 
-If you want to modify an item that you already have in the form of an ```ItemStack``` you can easily do this, just put the ```ItemStack``` in the create method and its data will be imported.
+If you want to modify an item that you already have in the form of an ```ItemStack``` you can easily do this, just put the ```ItemStack``` in the ```create``` method and its data will be imported.
 
 ##### Item Properties
-To set any of the following properties is fairly simple
+To set any of the following properties is fairly simple and self-explainatory.
+
 ###### Display Name
 ```java
 NItem.create(Material.GOLD_AXE).setName("&c&lBleeding &6&lAxe").make();
@@ -69,6 +70,11 @@ lore.add("This is the first line");
 lore.add("&rThis is the &asecond &rline");
 NItem.create(Material.GOLD_AXE).setLore(lore).make();
 ```
+###### Enchantments
+```java
+NItem.create(Material.GOLD_AXE).setEnchantment(Enchantment.DURABILITY, 8).make();
+```
+To add enchantments to your Item you can use the ```setEnchantment(Enchantment, Level)``` method. As the name suggests it will add the specified enchantment with this level to the item. The system supports unsafe enchantments, this means items can have insane high or low levels, such as 5, 10, -10 or any other ```Integer```.
 
 ## Compilation
 
