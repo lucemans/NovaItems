@@ -2,10 +2,12 @@ package nl.lucemans.NovaItems;
 
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -20,6 +22,7 @@ public class NItem {
     public int amount = 1;
     public ItemMeta data;
     public HashMap<Enchantment, Integer> enchants = new HashMap<Enchantment, Integer>();
+    public ArrayList<ItemFlag> flags = new ArrayList<ItemFlag>();
     public boolean color = true;
     public boolean loreColor = true;
 
@@ -27,7 +30,7 @@ public class NItem {
 
     public static NItem create(Material material) { return new NItem(material); }
 
-    public NItem(ItemStack itemStack) { data = itemStack.getItemMeta(); type = itemStack.getType(); amount = itemStack.getAmount(); enchants = new HashMap<Enchantment, Integer> (itemStack.getEnchantments()); }
+    public NItem(ItemStack itemStack) { data = itemStack.getItemMeta(); type = itemStack.getType(); amount = itemStack.getAmount(); enchants = new HashMap<Enchantment, Integer> (itemStack.getEnchantments()); flags = new ArrayList<ItemFlag>(itemStack.getItemMeta().getItemFlags()); }
 
     public NItem(Material type) { this.type = type; }
 
@@ -39,12 +42,15 @@ public class NItem {
     public NItem setDescription(List<String> list) { this.description = new ArrayList<String>(list); return this; }
     public NItem setMeta(ItemMeta meta) { this.data = meta; return this; }
     public NItem setEnchantment(Enchantment enchantment, Integer level) { this.enchants.put(enchantment, level); return this; }
+    public NItem setItemFlag(ItemFlag... flag) { this.flags.addAll(new ArrayList<ItemFlag>(Arrays.asList(flag))); return this; }
 
     public NItem removeName() { this.name = null; return this; }
     public NItem removeDescription() { this.description = null; return this; }
     public NItem removeMeta() { this.data = null; return this; }
     public NItem removeAllEnchantments() { this.enchants = new HashMap<Enchantment, Integer>(); return this; }
     public NItem removeEnchantment(Enchantment enchantment) { this.enchants.remove(enchantment); return this; }
+    public NItem removeAllItemFlags() { this.flags = new ArrayList<ItemFlag>(); return this; }
+    public NItem removeItemFlag(ItemFlag flag) { this.flags.remove(flag); return this; }
 
     // Color Properties
     public NItem setNameColor(boolean shouldUseColorName) {
@@ -71,6 +77,13 @@ public class NItem {
         if (description != null)
             meta.setLore((this.loreColor ? parse(this.description) : this.description));
 
+        // Remove all flags
+        for (ItemFlag flag : meta.getItemFlags())
+            meta.removeItemFlags(flag);
+        // Set all flags
+        for (ItemFlag flag : flags)
+            meta.addItemFlags(flag);
+
         // Overwrite the item meta
         item.setItemMeta(meta);
 
@@ -80,6 +93,7 @@ public class NItem {
 
         // Add our new unsafe enchantments
         item.addUnsafeEnchantments(enchants);
+
         return item;
     }
 
