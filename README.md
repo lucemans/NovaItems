@@ -80,8 +80,24 @@ The item's description/lore by default supports color codes, to disable this see
 NItem.create(Material.GOLD_AXE).setEnchantment(Enchantment.DURABILITY, 8).make();
 ```
 To add enchantments to your Item you can use the ```setEnchantment(Enchantment, Level)``` method. As the name suggests it will add the specified enchantment with this level to the item. The system supports unsafe enchantments, this means items can have insane high or low levels, such as 5, 10, -10 or any other ```Integer```.
+#### Item Flags
+```java
+NItem.create(Material.GOLD_AXE).setItemFlag(ItemFlag.HIDE_ENCHANTS).make();
+```
+To use ItemFlags, you can simply perform the ```setItemFlag``` method to set itemflags. This method also supports multiple arguments so you can set multiple ItemFlags at the same time like so:
+```java
+NItem.create(Material.GOLD_AXE).setItemFlag(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_POTION_EFFECTS).make();
+```
 #### Coloring
-Coloring things
+
+By default all coloring is on. All & color codes will work.
+If you would like to disable this howhever you can do one of the following.
+```java
+NItem.create(Material.GOLD_AXE).setNameColor(false).make();
+```
+```java
+NItem.create(Material.GOLD_AXE).setNameColor(true).make();
+```
 
 ## Compilation
 
