@@ -20,45 +20,27 @@ public class NItem {
     public boolean color = true;
     public boolean loreColor = true;
 
-    public static NItem create(ItemStack itemStack)
-    {
-        return new NItem(itemStack);
-    }
-    public static NItem create(Material material)
-    {
-        return new NItem(material);
-    }
-    public NItem(ItemStack itemStack)
-    {
-        data = itemStack.getItemMeta();
-        type = itemStack.getType();
-        amount = itemStack.getAmount();
-    }
-    public NItem(Material type)
-    {
-        this.type = type;
-    }
-    public NItem(Material type, int amount)
-    {
-        this.type = type;
-        this.amount = amount;
-    }
-    public NItem setAmount(int amount) {
-        this.amount = amount;
-        return this;
-    }
-    public NItem setName(String name) {
-        this.name = name;
-        return this;
-    }
-    public NItem setDescription(List<String> list) {
-        this.description = new ArrayList<String>(list);
-        return this;
-    }
-    public NItem setMeta(ItemMeta meta) {
-        this.data = meta;
-        return this;
-    }
+    public static NItem create(ItemStack itemStack) { return new NItem(itemStack); }
+
+    public static NItem create(Material material) { return new NItem(material); }
+
+    public NItem(ItemStack itemStack) { data = itemStack.getItemMeta(); type = itemStack.getType(); amount = itemStack.getAmount(); }
+
+    public NItem(Material type) { this.type = type; }
+
+    public NItem(Material type, int amount) { this.type = type; this.amount = amount; }
+
+    // Item Properties
+    public NItem setName(String name) { this.name = name; return this; }
+    public NItem setAmount(int amount) { this.amount = amount; return this; }
+    public NItem setDescription(List<String> list) { this.description = new ArrayList<String>(list); return this; }
+    public NItem setMeta(ItemMeta meta) { this.data = meta; return this; }
+
+    public NItem removeName() { this.name = null; return this; }
+    public NItem removeDescription() { this.description = null; return this; }
+    public NItem removeMeta() { this.data = null; return this; }
+
+    // Color Properties
     public NItem setNameColor(boolean shouldUseColorName) {
         this.color = shouldUseColorName;
         return this;
@@ -67,6 +49,8 @@ public class NItem {
         this.loreColor = shouldUseColorLore;
         return this;
     }
+
+    // Item Fabrication
     public ItemStack make() {
         ItemStack item = new ItemStack(type, amount);
         ItemMeta meta = item.getItemMeta();
@@ -83,6 +67,7 @@ public class NItem {
         return item;
     }
 
+    // Color Parsing
     private String parse(String str) {
         return str.replaceAll("&([0-9A-Fa-fk-orK-OR])", "§$1");
     }
