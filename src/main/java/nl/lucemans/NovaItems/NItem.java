@@ -40,6 +40,7 @@ public class NItem {
     public NItem setName(String name) { this.name = name; return this; }
     public NItem setAmount(int amount) { this.amount = amount; return this; }
     public NItem setDescription(List<String> list) { this.description = new ArrayList<String>(list); return this; }
+    public NItem setDescription(String... list) { this.description = new ArrayList<String>(Arrays.asList(list)); return this; }
     public NItem setMeta(ItemMeta meta) { this.data = meta; return this; }
     public NItem setEnchantment(Enchantment enchantment, Integer level) { this.enchants.put(enchantment, level); return this; }
     public NItem setItemFlag(ItemFlag... flag) { this.flags.addAll(new ArrayList<ItemFlag>(Arrays.asList(flag))); return this; }
@@ -106,6 +107,7 @@ public class NItem {
         List<String> res = new ArrayList<String>();
         for (String _str : str)
             res.add(parse(_str));
+
         return res;
     }
 }
