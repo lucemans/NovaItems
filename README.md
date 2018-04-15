@@ -58,7 +58,7 @@ To set any of the following properties is fairly simple and self-explainatory.
 ```java
 NItem.create(Material.GOLD_AXE).setName("&c&lBleeding &6&lAxe").make();
 ```
-The Item Display Name by default supports color codes, to disable this see [setNameColor](#Coloring).
+The Item Display Name by default supports color codes, to disable this see [setNameColor](#coloring).
 ##### Amount
 ```java
 NItem.create(Material.GOLD_AXE).setName("&c&lBleeding &6&lAxe").make();
@@ -74,7 +74,7 @@ lore.add("This is the first line");
 lore.add("&rThis is the &asecond &rline");
 NItem.create(Material.GOLD_AXE).setLore(lore).make();
 ```
-The item's description/lore by default supports color codes, to disable this see [setLoreColor](####Coloring).
+The item's description/lore by default supports color codes, to disable this see [setLoreColor](#coloring).
 ##### Enchantments
 ```java
 NItem.create(Material.GOLD_AXE).setEnchantment(Enchantment.DURABILITY, 8).make();
