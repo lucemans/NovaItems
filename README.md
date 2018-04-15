@@ -52,18 +52,18 @@ NItem.create(itemstack).make();
 
 If you want to modify an item that you already have in the form of an ```ItemStack``` you can easily do this, just put the ```ItemStack``` in the ```create``` method and its data will be imported.
 
-##### Item Properties
+### Item Properties
 To set any of the following properties is fairly simple and self-explainatory.
-###### Display Name
+#### Display Name
 ```java
 NItem.create(Material.GOLD_AXE).setName("&c&lBleeding &6&lAxe").make();
 ```
 The Item Display Name by default supports color codes, to disable this see [setNameColor](#coloring).
-##### Amount
+#### Amount
 ```java
 NItem.create(Material.GOLD_AXE).setName("&c&lBleeding &6&lAxe").make();
 ```
-##### Description / Lore
+#### Description / Lore
 ```java
 NItem.create(Material.GOLD_AXE).setLore("This is the first line", "&rThis is the &asecond &rline").make();
 ```
@@ -75,7 +75,7 @@ lore.add("&rThis is the &asecond &rline");
 NItem.create(Material.GOLD_AXE).setLore(lore).make();
 ```
 The item's description/lore by default supports color codes, to disable this see [setLoreColor](#coloring).
-##### Enchantments
+#### Enchantments
 ```java
 NItem.create(Material.GOLD_AXE).setEnchantment(Enchantment.DURABILITY, 8).make();
 ```
