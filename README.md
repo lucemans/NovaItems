@@ -42,6 +42,16 @@ NItem.create(Material.GOLD_AXE).make();
 The above code simply creates a new Instance of NItem of type GOLD_AXE.
 The make() function simply fabricates the ItemStack.
 
+#### Creating an item from another item
+
+```java
+ItemStack itemstack = new ItemStack(Material.STONE);
+
+NItem.create(itemstack).make();
+```
+
+If you want to modify an item that you already have in the form of an ```ItemStack``` you can easily do this, just put the ```ItemStack``` in the create method and its data will be imported.
+
 ##### Item Properties
 To set any of the following properties is fairly simple
 ###### Display Name
