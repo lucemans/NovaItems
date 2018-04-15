@@ -54,12 +54,16 @@ If you want to modify an item that you already have in the form of an ```ItemSta
 
 ##### Item Properties
 To set any of the following properties is fairly simple and self-explainatory.
-
 ###### Display Name
 ```java
 NItem.create(Material.GOLD_AXE).setName("&c&lBleeding &6&lAxe").make();
 ```
-###### Description / Lore
+The Item Display Name by default supports color codes, to disable this see [```setNameColor()```](#### Coloring).
+##### Amount
+```java
+NItem.create(Material.GOLD_AXE).setName("&c&lBleeding &6&lAxe").make();
+```
+##### Description / Lore
 ```java
 NItem.create(Material.GOLD_AXE).setLore("This is the first line", "&rThis is the &asecond &rline").make();
 ```
@@ -70,11 +74,14 @@ lore.add("This is the first line");
 lore.add("&rThis is the &asecond &rline");
 NItem.create(Material.GOLD_AXE).setLore(lore).make();
 ```
-###### Enchantments
+The item's description/lore by default supports color codes, to disable this see [```setLoreColor()```](#### Coloring).
+##### Enchantments
 ```java
 NItem.create(Material.GOLD_AXE).setEnchantment(Enchantment.DURABILITY, 8).make();
 ```
 To add enchantments to your Item you can use the ```setEnchantment(Enchantment, Level)``` method. As the name suggests it will add the specified enchantment with this level to the item. The system supports unsafe enchantments, this means items can have insane high or low levels, such as 5, 10, -10 or any other ```Integer```.
+#### Coloring
+Coloring things
 
 ## Compilation
 
