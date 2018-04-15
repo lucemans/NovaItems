@@ -88,6 +88,11 @@ To use ItemFlags, you can simply perform the ```setItemFlag``` method to set ite
 ```java
 NItem.create(Material.GOLD_AXE).setItemFlag(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_POTION_EFFECTS).make();
 ```
+#### Overriding Meta
+```java
+NItem.create(Material.GOLD_AXE).setMeta(meta).make();
+```
+If you are in need of manually overriding the items ```ItemMeta``` this is also possible. Do note that if any of the other features of ```NItem``` are set that those will overwrite.
 #### Coloring
 
 By default all coloring is on. All & color codes will work.
