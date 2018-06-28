@@ -2,6 +2,7 @@ package nl.lucemans.NovaItems;
 
 public enum NBlockColor {
 
+    CLEAR(0),
     ORANGE(1),
     MAGENTA(2),
     LIGHTBLUE(3),
