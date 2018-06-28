@@ -20,17 +20,19 @@ public class NItem {
     public ArrayList<String> description;
     public Material type = Material.STONE;
     public int amount = 1;
+    public short durability = 0;
     public ItemMeta data;
     public HashMap<Enchantment, Integer> enchants = new HashMap<Enchantment, Integer>();
     public ArrayList<ItemFlag> flags = new ArrayList<ItemFlag>();
     public boolean color = true;
     public boolean loreColor = true;
+    public ItemStack originItem = null;
 
     public static NItem create(ItemStack itemStack) { return new NItem(itemStack); }
 
     public static NItem create(Material material) { return new NItem(material); }
 
-    public NItem(ItemStack itemStack) { data = itemStack.getItemMeta(); type = itemStack.getType(); amount = itemStack.getAmount(); enchants = new HashMap<Enchantment, Integer> (itemStack.getEnchantments()); flags = new ArrayList<ItemFlag>(itemStack.getItemMeta().getItemFlags()); }
+    public NItem(ItemStack itemStack) { originItem = itemStack; data = itemStack.getItemMeta(); type = itemStack.getType(); amount = itemStack.getAmount(); enchants = new HashMap<Enchantment, Integer> (itemStack.getEnchantments()); flags = new ArrayList<ItemFlag>(itemStack.getItemMeta().getItemFlags()); durability = itemStack.getDurability(); }
 
     public NItem(Material type) { this.type = type; }
 
@@ -48,6 +50,8 @@ public class NItem {
     public NItem setMeta(ItemMeta meta) { this.data = meta; return this; }
     public NItem setEnchantment(Enchantment enchantment, Integer level) { this.enchants.put(enchantment, level); return this; }
     public NItem setItemFlag(ItemFlag... flag) { this.flags.addAll(new ArrayList<ItemFlag>(Arrays.asList(flag))); return this; }
+    public NItem setDurability(Short durability) { this.durability = durability; return this;}
+    public NItem setColor(NBlockColor c) { this.durability = (short) c.getValue(); return this; }
 
     public NItem removeName() { this.name = null; return this; }
     public NItem removeDescription() { this.description = null; return this; }
@@ -69,7 +73,11 @@ public class NItem {
 
     // Item Fabrication
     public ItemStack make() {
-        ItemStack item = new ItemStack(type, amount);
+        ItemStack item = null;
+        if (originItem == null)
+            item = new ItemStack(type, amount);
+        else
+            item = originItem;
         ItemMeta meta = item.getItemMeta();
 
         // Overwrite meta
@@ -98,6 +106,8 @@ public class NItem {
 
         // Add our new unsafe enchantments
         item.addUnsafeEnchantments(enchants);
+
+        item.setDurability(durability);
 
         return item;
     }
