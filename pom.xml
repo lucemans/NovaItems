@@ -6,7 +6,7 @@
 
     <groupId>nl.lucemans</groupId>
     <artifactId>NovaItems</artifactId>
-    <version>1.6-SNAPSHOT</version>
+    <version>1.7-SNAPSHOT</version>
 
     <build>
         <finalName>${project.name}-V${project.version}</finalName>

@@ -52,6 +52,7 @@ public class NItem {
     public NItem setItemFlag(ItemFlag... flag) { this.flags.addAll(new ArrayList<ItemFlag>(Arrays.asList(flag))); return this; }
     public NItem setDurability(Short durability) { this.durability = durability; return this;}
     public NItem setColor(NBlockColor c) { this.durability = (short) c.getValue(); return this; }
+    public NItem setLine(Integer line, String str) { if (this.description == null) {this.description = new ArrayList<String>();} this.description.set(line, str); return this; }
 
     public NItem removeName() { this.name = null; return this; }
     public NItem removeDescription() { this.description = null; return this; }
