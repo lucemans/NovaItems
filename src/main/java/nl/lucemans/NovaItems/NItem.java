@@ -1,5 +1,6 @@
 package nl.lucemans.NovaItems;
 
+import de.tr7zw.nbtapi.NBTItem;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
@@ -27,6 +28,7 @@ public class NItem {
     public boolean color = true;
     public boolean loreColor = true;
     public ItemStack originItem = null;
+    public int texture = -1;
 
     public static NItem create(ItemStack itemStack) { return new NItem(itemStack); }
 
@@ -53,6 +55,7 @@ public class NItem {
     public NItem setDurability(Short durability) { this.durability = durability; return this;}
     public NItem setColor(NBlockColor c) { this.durability = (short) c.getValue(); return this; }
     public NItem setLine(Integer line, String str) { if (this.description == null) {this.description = new ArrayList<String>();} this.description.set(line, str); return this; }
+    public NItem setCustomModel(Integer modelId) { this.texture = modelId; return this;}
 
     public NItem removeName() { this.name = null; return this; }
     public NItem removeDescription() { this.description = null; return this; }
@@ -61,6 +64,7 @@ public class NItem {
     public NItem removeEnchantment(Enchantment enchantment) { this.enchants.remove(enchantment); return this; }
     public NItem removeAllItemFlags() { this.flags = new ArrayList<ItemFlag>(); return this; }
     public NItem removeItemFlag(ItemFlag flag) { this.flags.remove(flag); return this; }
+    public NItem removeCustomModel(Integer modelId) { this.texture = -1; return this; }
 
     // Color Properties
     public NItem setNameColor(boolean shouldUseColorName) {
@@ -109,6 +113,12 @@ public class NItem {
         item.addUnsafeEnchantments(enchants);
 
         item.setDurability(durability);
+
+        if (texture != -1) {
+            NBTItem ni = new NBTItem(item);
+            ni.setInteger("CustomModelData", texture);
+            item = ni.getItem();
+        }
 
         return item;
     }
